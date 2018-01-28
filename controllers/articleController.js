@@ -4,40 +4,43 @@ const db = require("../models");
 const axios = require("axios");
 
 const articleFunction = {
-  getNYTArticles: function (req, res) {
-    axios.get("https://api.nytimes.com/svc/search/v2/articlesearch.json", {
-      params: {
-          "api-key": "2bac998bc7e9497eac7b13a57242f19d",
-          "q": req.query.searchTopic,
-          "begin_date": req.query.startDate,
-          "end_date": req.query.endDate
-      }
-  }).then(function (data) {
-      res.json(data.data.response);
 
-
-  }).catch(function (err) {
-      console.log(err);
-  })
-  },  
+  getSavedArticles: function (req, res) {
+    db.Article
+      .find(req.query)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   saveArticle: function (req, res) {
     db.Article
       .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  getSavedArticles: function (req, res) {
-    db.Article
-        .find(req.query)
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
-},
+
   remove: function (req, res) {
     db.Article
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+
+  getNYTArticles: function (req, res) {
+    axios.get("https://api.nytimes.com/svc/search/v2/articlesearch.json", {
+      params: {
+        "api-key": "2bac998bc7e9497eac7b13a57242f19d",
+        "q": req.query.searchTopic,
+        "begin_date": req.query.startDate,
+        "end_date": req.query.endDate
+      }
+    }).then(function (data) {
+      res.json(data.data.response);
+
+
+    }).catch(function (err) {
+      console.log(err);
+    })
   }
 }
 
