@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/NavBar/NavBar.css"],"names":[],"mappings":"AAAA,cACI,iBAAkB","file":"static/css/main.a87a049e.css","sourcesContent":[".navbar-brand {\r\n    text-align:center;\r\n}\n\n\n// WEBPACK FOOTER //\n// ./src/components/NavBar/NavBar.css"],"sourceRoot":""}
