@@ -6,11 +6,11 @@ export default {
     return axios.get("/api/articles", {params: searchObj})
   },
   getSavedArticles: function(){
-    return axios.get("/api/articles/save")
+    return axios.get("/api/articles/saved")
   },
-  deleteArticle: function(id){
-    return axios.delete("/api/article/delete" + id)
-  },
+  delete: function(id){
+    return axios.delete("/api/articles/delete" + id)
+},
   saveArticle: function(articleData){
     return axios.post("/api/articles", articleData)
   }

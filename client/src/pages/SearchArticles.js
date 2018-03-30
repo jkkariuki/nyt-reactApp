@@ -2,7 +2,9 @@ import React from "react";
 import Form from "../components/Form";
 import API from "../utils/API";
 import ResultItem from "../components/ResultItem";
-import Results from "../components/Results"
+import Results from "../components/Results";
+import Nav from "../components/NavBar"
+
 //import articles from "../components/articles"
 
 
@@ -49,6 +51,7 @@ class Searches extends React.Component {
     }
 
     saveThisArticle = (headline, link, date) => {
+        console.log("hello")
         API.saveArticle({
             name: headline,
             url: link,
@@ -62,6 +65,8 @@ class Searches extends React.Component {
 
         return (
             <div>
+                <Nav />
+
                 <Form
                     search={this.state.searchTopic}
                     handleInputChange={this.handleInputChange}

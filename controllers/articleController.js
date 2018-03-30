@@ -6,20 +6,23 @@ const axios = require("axios");
 const articleFunction = {
 
   getSavedArticles: function (req, res) {
-    db.Article
+    db.article
       .find(req.query)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   saveArticle: function (req, res) {
-    db.Article
+  console.log(JSON.stringify(req.body));
+    
+    db.article
       .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
 
   remove: function (req, res) {
-    db.Article
+    console.log(req.params.id)
+    db.article
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))

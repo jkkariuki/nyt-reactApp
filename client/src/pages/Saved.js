@@ -2,6 +2,7 @@ import React from "react";
 import API from "../utils/API"
 import ArticleContainer from "../components/SavedContainer";
 import SingleArticle from "../components/SingleArticle";
+import Nav from "../components/NavBar"
 
 
 
@@ -32,8 +33,8 @@ class Saved extends React.Component {
     };
 
     deleteThisArticle = id => {
-        // console.log("article id " + id );
-        API.deleteArticle(id)
+        console.log("article id " + id );
+        API.delete(id)
             .then(res => this.loadArticles())
             .catch(err => console.log(err));
 
@@ -42,7 +43,7 @@ class Saved extends React.Component {
     render() {
         return (
             <div>
-
+                <Nav />
                 <div className="container">
                     <h1 className="title">Saved Articles</h1>
                     <br />
